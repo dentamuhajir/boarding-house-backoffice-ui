@@ -24,10 +24,33 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        <div className="container mx-auto py-8">
+          <div className="grid gap-4">
+            <div className="bg-gray-200 p-4 rounded">
+              First Row: One Column
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-gray-200 p-4 rounded">
+                Second Row: First Column
+              </div>
+              <div className="bg-gray-200 p-4 rounded">
+                Second Row: Second Column
+              </div>     
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="bg-gray-200 p-4 rounded">
+                Third Row: First Column
+              </div>
+              <div className="bg-gray-200 p-4 rounded">
+                Third Row: Second Column
+              </div>    
+              <div className="bg-gray-200 p-4 rounded">
+                Third Row: Third Column
+              </div>      
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );

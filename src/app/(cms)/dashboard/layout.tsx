@@ -1,3 +1,6 @@
+import Footer from "./components/footer";
+import Header from "./components/header";
+
 export default function DashboardLayout({
     children,
   }: Readonly<{
@@ -5,9 +8,9 @@ export default function DashboardLayout({
   }>) {
     return (
         <>        
-        <header>This is header for dashboard section</header>
-          {children}
-        <footer>This is footer for dashboard section</footer>
+          <Header/>
+            {children}
+          <Footer/>
         </>
     );
   }

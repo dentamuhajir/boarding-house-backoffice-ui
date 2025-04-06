@@ -26,19 +26,25 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="container mx-auto py-8">
-          <div className="grid gap-4">
+          <div className="grid gap-2">
             <div className="bg-gray-200 p-4 rounded">
               First Row: One Column
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-x-2 gap-y-5 mb-0">
               <div className="bg-gray-200 p-4 rounded">
                 Second Row: First Column
               </div>
               <div className="bg-gray-200 p-4 rounded">
                 Second Row: Second Column
-              </div>     
+              </div>
+              <div className="bg-gray-200 p-4 rounded">
+                Second Row: First Column
+              </div>
+              <div className="bg-gray-200 p-4 rounded">
+                Second Row: Second Column
+              </div>          
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-x-2 gap-y-2 border border-dashed mt-0">
               <div className="bg-gray-200 p-4 rounded">
                 Third Row: First Column
               </div>

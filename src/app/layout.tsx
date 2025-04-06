@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div className="container mx-auto py-8">
-          <div className="grid gap-2">
+          <div className="grid gap-4">
             <div className="bg-gray-200 p-4 rounded">
               First Row: One Column
             </div>
@@ -55,6 +55,35 @@ export default function RootLayout({
                 Third Row: Third Column
               </div>      
             </div>
+          </div>
+
+          <div className="flex flex-col gap-4 mt-5">
+            <div className="flex">
+              <div className="w-full bg-gray-200 p-4 rounded">
+                Row 1: One Column using grid
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-1/2 bg-gray-200 p-4 rounded">
+                Row 1: W-1/2
+              </div>
+              <div className="w-1/2 bg-gray-200 p-4 rounded">
+                Row 2: W-1/2
+              </div>  
+            </div>
+
+            <div className="flex gap-4">
+              <div className="w-1/3 bg-gray-200 p-4 rounded">
+                Row 1: W-1/3
+              </div>
+              <div className="w-1/3 bg-gray-200 p-4 rounded">
+                Row 2: W-1/3
+              </div> 
+              <div className="w-1/3 bg-gray-200 p-4 rounded">
+                Row 3: W-1/3
+              </div>   
+            </div>
+
           </div>
         </div>
       </body>

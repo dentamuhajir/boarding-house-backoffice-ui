@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import  "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,7 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="container mx-auto py-8">
+        { children }
+        {/* <div className="container mx-auto py-8">
           <div className="grid gap-4">
             <div className="bg-gray-200 p-4 rounded">
               First Row: One Column
@@ -56,36 +58,7 @@ export default function RootLayout({
               </div>      
             </div>
           </div>
-
-          <div className="flex flex-col gap-4 mt-5">
-            <div className="flex">
-              <div className="w-full bg-gray-200 p-4 rounded">
-                Row 1: One Column using grid
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <div className="w-1/2 bg-gray-200 p-4 rounded">
-                Row 1: W-1/2
-              </div>
-              <div className="w-1/2 bg-gray-200 p-4 rounded">
-                Row 2: W-1/2
-              </div>  
-            </div>
-
-            <div className="flex gap-4">
-              <div className="w-1/3 bg-gray-200 p-4 rounded">
-                Row 1: W-1/3
-              </div>
-              <div className="w-1/3 bg-gray-200 p-4 rounded">
-                Row 2: W-1/3
-              </div> 
-              <div className="w-1/3 bg-gray-200 p-4 rounded">
-                Row 3: W-1/3
-              </div>   
-            </div>
-
-          </div>
-        </div>
+        </div> */}
       </body>
     </html>
   );

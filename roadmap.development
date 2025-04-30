@@ -1,0 +1,33 @@
+🔥 3-Day Next.js Learning Plan
+
+✅ Day 1: Understanding Next.js Basics
+🔹 Install and set up a Next.js project
+🔹 Understand Pages & Routing (App Router vs Pages Router)
+🔹 Learn how getServerSideProps (SSR) & getStaticProps (SSG) work
+🔹 Practice simple SSR & SSG data fetching
+
+👨‍💻 Hands-on Exercise:
+
+Create a home page (/)
+Add an about page (/about)
+Create a blog list page (/blog) using getStaticProps
+✅ Day 2: API Handling & Dynamic Routing
+🔹 Understand Dynamic Routes (pages/[id].js)
+🔹 Learn API Routes (pages/api/) to create backend endpoints
+🔹 Fetch data using Axios & fetch
+🔹 Practice Client-Side Fetching (useEffect)
+
+👨‍💻 Hands-on Exercise:
+
+Create a blog detail page (/blog/[id]) using getStaticPaths
+Build a custom API (pages/api/posts.js)
+Fetch API data inside a page
+✅ Day 3: Authentication & Deployment
+🔹 Implement Authentication (NextAuth.js or JWT)
+🔹 Learn Middleware for route protection
+🔹 Deploy a Next.js app (Vercel, Netlify, or DigitalOcean)
+
+👨‍💻 Hands-on Exercise:
+
+Protect a page (/dashboard) so only logged-in users can access it
+Deploy your project to Vercel

@@ -16,16 +16,18 @@ export default function sidebar() {
                 </Link>
             </li>
             <li className="mb-1">
-                <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#product-collapse" aria-expanded="false">
-                Product
-                </button>
+                <Link href='/dashboard/product'>
+                    <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#product-collapse" aria-expanded="false">
+                    Product
+                    </button>
+                </Link>
                 <div className="collapse" id="product-collapse">
                 <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                     <li>
-                        <Link href='/cms/product/add'> Add </Link>
+                        <Link href='/dashboard/product/add'> Add </Link>
                     </li>
                     <li>
-                        <Link href='/cms/product/list'> List </Link>
+                        <Link href='/dashboard/product'> List </Link>
                     </li>
                 </ul>
                 </div>

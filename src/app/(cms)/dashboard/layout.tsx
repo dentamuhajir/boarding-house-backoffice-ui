@@ -15,7 +15,6 @@ export default function DashboardLayout({
                 <Sidebar/>
               </div>
               <div className="col-10">
-                Content here
                 { children }
               </div>
           </div>

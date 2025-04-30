@@ -13,7 +13,6 @@
     Problem Install Bootstrap min js
     https://stackoverflow.com/questions/69527455/could-not-find-a-declaration-file-for-module-bootstrap-dist-js-bootstrap
     https://egghead.io/tips/install-and-setup-bootstrap-in-next.js~fegkg
-
 # Default structure
 /app
   /page.tsx

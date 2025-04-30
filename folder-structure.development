@@ -1,0 +1,127 @@
+1. Core Structure:
+
+├── app/
+│   ├── (dashboard)/         # Route group for the main dashboard
+│   │   ├── layout.tsx       # Dashboard-specific layout
+│   │   ├── page.tsx         # Main dashboard overview page
+│   │   ├── products/        # Products related pages
+│   │   │   ├── page.tsx     # Product list
+│   │   │   ├── [id]/        # Dynamic route for individual product
+│   │   │   │   ├── page.tsx # Product details
+│   │   │   ├── new/         # Page for adding new product
+│   │   │   │   ├── page.tsx
+│   │   │   └── _components/ # Product-specific components (private)
+│   │   │       ├── ProductCard.tsx
+│   │   │       └── ...
+│   │   ├── orders/          # Orders related pages
+│   │   │   ├── page.tsx     # Order list
+│   │   │   ├── [id]/        # Dynamic route for individual order
+│   │   │   │   ├── page.tsx # Order details
+│   │   │   └── _components/ # Order-specific components (private)
+│   │   │       ├── OrderItem.tsx
+│   │   │       └── ...
+│   │   ├── customers/       # Customers related pages
+│   │   │   ├── page.tsx     # Customer list
+│   │   │   ├── [id]/        # Dynamic route for individual customer
+│   │   │   │   ├── page.tsx # Customer details
+│   │   │   └── _components/ # Customer-specific components (private)
+│   │   │       ├── CustomerInfo.tsx
+│   │   │       └── ...
+│   │   ├── analytics/       # Analytics and reports pages
+│   │   │   ├── page.tsx     # Main analytics overview
+│   │   │   ├── sales/
+│   │   │   │   ├── page.tsx
+│   │   │   ├── products/
+│   │   │   │   ├── page.tsx
+│   │   │   └── _components/ # Analytics-specific components (private)
+│   │   │       ├── SalesChart.tsx
+│   │   │       └── ...
+│   │   └── _components/     # Shared components within the dashboard route group (private)
+│   │       ├── DashboardHeader.tsx
+│   │       ├── Sidebar.tsx
+│   │       └── ...
+│   ├── layout.tsx           # Root layout for the entire application
+│   ├── page.tsx             # Homepage (if any, or a redirect)
+│   └── api/                 # API routes
+│       ├── products/
+│       │   ├── route.ts
+│       │   └── [id]/
+│       │       └── route.ts
+│       └── orders/
+│           ├── route.ts
+│           └── [id]/
+│               └── route.ts
+├── components/              # Globally shared and reusable components
+│   ├── ui/                  # Basic UI elements (buttons, inputs, modals, etc.)
+│   │   ├── Button/
+│   │   │   ├── Button.tsx
+│   │   │   ├── Button.module.css
+│   │   │   └── index.ts
+│   │   ├── Card/
+│   │   │   ├── Card.tsx
+│   │   │   ├── Card.module.css
+│   │   │   └── index.ts
+│   │   └── ...
+│   ├── layout/              # Layout components for different sections of the app (e.g., public layout)
+│   │   ├── PublicLayout.tsx
+│   │   └── ...
+│   └── features/            # Feature-specific components (e.g., auth components)
+│       ├── auth/
+│       │   ├── LoginForm.tsx
+│       │   └── ...
+│       └── ...
+├── hooks/                   # Custom React hooks
+│   ├── useAuth.ts
+│   ├── useFetch.ts
+│   └── ...
+├── lib/                     # Utility functions, API clients, database connections, etc.
+│   ├── api-client.ts        # Functions for making API calls
+│   ├── utils.ts             # General utility functions (formatting, validation)
+│   ├── db.ts                # Database connection and helper functions
+│   └── auth.ts              # Authentication related functions
+├── models/                  # TypeScript interfaces and types
+│   ├── product.ts
+│   ├── order.ts
+│   ├── customer.ts
+│   └── ...
+├── public/                  # Static assets (images, fonts, etc.)
+│   └── ...
+├── styles/                  # Global styles and potentially base component styles
+│   ├── global.css
+│   └── theme.ts             # If using a theming solution
+├── tests/                   # Unit and integration tests
+│   ├── components/
+│   ├── hooks/
+│   └── ...
+├── .env.local               # Environment variables
+├── next.config.js           # Next.js configuration
+├── package.json
+├── tsconfig.json            # TypeScript configuration
+└── README.md
+
+
+├── store/                     # Redux related files
+│   ├── index.ts               # Root reducer and store configuration
+│   ├── reducers/              # Individual reducers (feature-specific)
+│   │   ├── productReducer.ts
+│   │   ├── orderReducer.ts
+│   │   ├── userReducer.ts
+│   │   └── index.ts           # Combines all reducers
+│   ├── actions/               # Action creators (feature-specific)
+│   │   ├── productActions.ts
+│   │   ├── orderActions.ts
+│   │   ├── userActions.ts
+│   │   └── index.ts           # Exports all action creators
+│   ├── types/                 # TypeScript types and interfaces for Redux state and actions
+│   │   ├── productTypes.ts
+│   │   ├── orderTypes.ts
+│   │   ├── userTypes.ts
+│   │   └── index.ts           # Exports all Redux types
+│   ├── selectors/             # Selectors for accessing state in a derived or memoized way (optional but recommended)
+│   │   ├── productSelectors.ts
+│   │   ├── orderSelectors.ts
+│   │   ├── userSelectors.ts
+│   │   └── index.ts           # Exports all selectors
+│   └── middleware/            # Custom Redux middleware (optional)
+│       ├── loggerMiddleware.ts
+│       └── ...

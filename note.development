@@ -1,0 +1,22 @@
+# Installation 
+    https://nextjs.org/docs/app/getting-started/installation
+    npx create-next-app@latest
+    npm run dev
+
+# Tailwind
+    https://www.youtube.com/watch?v=vdxnBKRD7kU
+    remove tailwind from project
+    npm uninstall -D tailwindcss postcss autoprefixer
+# Bootstrap
+    Install Bootstrap
+    npm install bootstrap
+
+# Default structure
+/app
+  /page.tsx
+  /layout.tsx
+
+Spring Boot → API (REST/JSON)
+Next.js Server Component → fetch API
+Client Component → interactivity, Redux
+

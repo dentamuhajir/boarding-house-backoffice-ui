@@ -22,3 +22,6 @@ Spring Boot → API (REST/JSON)
 Next.js Server Component → fetch API
 Client Component → interactivity, Redux
 
+# Reference 
+    https://medium.com/@aslandjc7/the-power-of-server-components-why-you-should-stop-using-useeffect-for-data-fetching-in-next-js-12a44f54f350#:~:text=Conclusion,SEO%2C%20✅%20Better%20user%20experience.
+

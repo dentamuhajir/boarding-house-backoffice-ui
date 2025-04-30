@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { Product } from "../../../../../models/Product"
+import { Product } from "@models/Product"
 
 export const metadata: Metadata = {
     'title': 'List Product'

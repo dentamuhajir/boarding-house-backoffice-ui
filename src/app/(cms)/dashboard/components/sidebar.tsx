@@ -9,7 +9,7 @@ export default function sidebar() {
             </a>
             <ul className="list-unstyled ps-0">
             <li className="mb-1">
-                <Link href='/cms/dashboard' >
+                <Link href='/dashboard' >
                     <button className="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
                     Dashboard
                     </button>
@@ -41,10 +41,8 @@ export default function sidebar() {
                 </Link>
                 <div className="collapse" id="account-collapse">
                 <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" className="link-dark rounded">New...</a></li>
-                    <li><a href="#" className="link-dark rounded">Profile</a></li>
-                    <li><a href="#" className="link-dark rounded">Settings</a></li>
-                    <li><a href="#" className="link-dark rounded">Sign out</a></li>
+                    <li><a href="#" className="link-dark rounded">Add account</a></li>
+                    <li><a href="#" className="link-dark rounded">List account</a></li>
                 </ul>
                 </div>
             </li>

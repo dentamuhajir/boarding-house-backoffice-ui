@@ -30,6 +30,37 @@ export default function account() {
         {
             error && <p className="text-danger">{ error }</p>
         }
+        
+ 
+        <table className="table table-striped table-hover table-bordered">
+          <thead className="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Username</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          {users.map((user, index) => (
+            <tr key={user.id}>
+              <td>{index + 1}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>{user.username}</td>
+              <td>{user.phone}</td>
+              
+              <td>
+                <button className="btn btn-sm btn-primary me-2">Edit</button>
+                <button className="btn btn-sm btn-danger">Delete</button>
+              </td>
+            </tr>
+          ))}
+          </tbody>
+        </table>
+      
         </>
     )
 }

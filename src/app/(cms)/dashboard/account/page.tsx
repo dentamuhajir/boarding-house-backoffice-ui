@@ -23,8 +23,13 @@ export default function account() {
     console.log(users)
 
     return (
+        <>
         <h1>
             List of account
         </h1>
+        {
+            error && <p className="text-danger">{ error }</p>
+        }
+        </>
     )
 }

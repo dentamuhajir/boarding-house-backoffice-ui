@@ -1,6 +1,14 @@
+'use client'
+
 export default function add() {
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        alert("Handle submit clicked")
+
+    }
     return <>
-        <form>
+        <form onSubmit={ handleSubmit }>
         <h3>Add Boarding House (Kost)</h3>
         
         <div className="mb-3">

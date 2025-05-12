@@ -1,9 +1,10 @@
 'use client'
+import { User } from "@models/User";
 import { UserService } from "@services/userService"
 import { useEffect, useState } from "react"
 
 export default function account() {
-    const [users, setUsers] = useState<any[]>([])
+    const [users, setUsers] = useState<User[]>([])
     const [error, setError] = useState<string | null>(null);
     
     useEffect(() => {
@@ -29,8 +30,7 @@ export default function account() {
         </h1>
         {
             error && <p className="text-danger">{ error }</p>
-        }
-        
+        }        
  
         <table className="table table-striped table-hover table-bordered">
           <thead className="table-dark">
@@ -51,7 +51,7 @@ export default function account() {
               <td>{user.email}</td>
               <td>{user.username}</td>
               <td>{user.phone}</td>
-              
+              <td>{user.phone}</td>
               <td>
                 <button className="btn btn-sm btn-primary me-2">Edit</button>
                 <button className="btn btn-sm btn-danger">Delete</button>

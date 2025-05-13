@@ -16,7 +16,9 @@ export default function add() {
         
         <div className="mb-3">
             <label  className="form-label">Name</label>
-            <input type="text" className="form-control" id="kostName" placeholder="Enter Name" {...register('name')} />
+            <input type="text" className="form-control" id="kostName" placeholder="Enter Name" {...register('name', {required: true, maxLength: 10})} />
+            { errors.name && <p>Input name is mandatory</p>}
+
         </div>
 
         <div className="mb-3">
@@ -26,7 +28,7 @@ export default function add() {
 
         <div className="mb-3">
             <label  className="form-label">Password</label>
-            <input type="text" className="form-control" id="kostName" placeholder="Enter password" {...register('password')} />
+            <input type="password" className="form-control" id="kostName" placeholder="Enter password" {...register('password')} />
         </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>

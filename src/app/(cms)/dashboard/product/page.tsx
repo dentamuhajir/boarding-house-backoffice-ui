@@ -28,7 +28,7 @@ export default async function product() {
     let products :Product[] = []
 
     const res = await fetch('https://fakestoreapi.com/products');
-    const product = await res.json();
+    const product = res.json();
 
     console.log(product)
     products = dummyData

@@ -16,14 +16,30 @@ export default function add() {
         
         <div className="mb-3">
             <label  className="form-label">Name</label>
-            <input type="text" className="form-control" id="kostName" placeholder="Enter Name" {...register('name', {required: true, maxLength: 10})} />
-            { errors.name && <p>Input name is mandatory</p>}
-
+            <input type="text" className="form-control" id="kostName" placeholder="Enter Name" {...register('name',
+                {
+                    required: 'input name is mandatory', 
+                    maxLength: {
+                        value: 10,
+                        message: 'Input maximal is  10 character'
+                    } 
+                }
+            )} />
+           {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
         </div>
 
         <div className="mb-3">
             <label  className="form-label">Email</label>
-            <input type="text" className="form-control" id="kostName" placeholder="Enter email" {...register('email')} />
+            <input type="text" className="form-control" id="kostName" placeholder="Enter email" 
+            {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: 'Invalid email format',
+                },
+            })} 
+              />
+              {errors.email && <p style={{ color: 'red' }}>{errors.email.message}</p>}
         </div>
 
         <div className="mb-3">

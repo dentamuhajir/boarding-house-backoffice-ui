@@ -1,5 +1,9 @@
 import Link from "next/link";
+const menuItems = [
+    { label: 'dashboard', path: '/dashboard'},
+    
 
+]
 export default function sidebar() {
     return(
         <div className="flex-shrink-0 p-3 bg-white" >

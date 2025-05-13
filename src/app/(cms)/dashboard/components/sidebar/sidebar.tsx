@@ -45,7 +45,9 @@ export default function sidebar() {
                 </Link>
                 <div className="collapse" id="account-collapse">
                 <ul className="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" className="link-dark rounded">Add account</a></li>
+                    <li>
+                        <Link href='/dashboard/account/add'> Add Account</Link>
+                    </li>
                     <li><a href="#" className="link-dark rounded">List account</a></li>
                 </ul>
                 </div>

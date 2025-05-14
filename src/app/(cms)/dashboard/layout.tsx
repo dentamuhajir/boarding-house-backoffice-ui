@@ -8,17 +8,12 @@ export default function DashboardLayout({
   }>) {
     return (
         <>
-          <Header/>
-          <div className='container-100'>
-            <div className="row">
-              <div className="col-2">
-                <Sidebar/>
-              </div>
-              <div className="col-10">
-                { children }
-              </div>
+          <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+            <Sidebar/>
+            <div className="h-screen flex-grow-1 overflow-y-lg-auto">
+              <Header />  
+            </div>
           </div>
-        </div>
         </>
     );
   }

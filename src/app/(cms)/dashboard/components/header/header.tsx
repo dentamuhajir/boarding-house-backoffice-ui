@@ -1,8 +1,8 @@
-
+import styles from "./header.module.css"
 export default function Header() {
     return (    
             <>
-            <header className="bg-surface-primary border-bottom pt-6 pb-6">
+            <header className={`bg-surface-primary border-bottom pt-6 pb-6 ${ styles.header }`}>
                 <div className="container-fluid">
                     <div className="mb-npx">
                         <div className="row align-items-center">

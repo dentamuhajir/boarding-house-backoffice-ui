@@ -17,33 +17,83 @@ export default function add() {
         console.log(data)
     }
     return <>
-    <form className="p-4 border rounded">
+    <form className="p-4 border rounded"  onSubmit={ handleSubmit(onSubmit) }>
         <div className="row">
             {/* Left Column */}
             <div className="col-md-8">
             <div className="mb-3">
                 <label htmlFor="username" className="form-label">Username</label>
-                <input type="text" className="form-control" id="username" name="username" required />
+                <input type="text" className="form-control" id="username" placeholder="Enter Username" {...register('username',
+                {
+                    required: 'input name is mandatory', 
+                    maxLength: {
+                        value: 25,
+                        message: 'Input maximal is  25 character'
+                    },
+                    pattern: {
+                        value: /^\S+$/, // No whitespace allowed
+                        message: 'Username must not contain spaces'
+                    }, 
+                }
+            )} />
+           {errors.username && <p className="pt-1 text-danger">{errors.username.message}</p>}
             </div>
 
             <div className="mb-3">
                 <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
-                <input type="tel" className="form-control" id="phoneNumber" name="phoneNumber" />
+                <input type="tel" className="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" {...register('phoneNumber', {
+                    required: 'Phone number is mandatory',
+                    pattern: {
+                        value: /^(^\+628\d{7,12}$|^08\d{7,12}$)/,
+                        message: 'Invalid Indonesian phone number format',
+                    },
+                    maxLength: {
+                        value: 15, 
+                        message: 'Input maximal is 15 characters',
+                    }
+                })} />
+
+                {errors.phoneNumber && <p className="pt-1 text-danger">{errors.phoneNumber.message}</p>}
             </div>
 
             <div className="mb-3">
                 <label htmlFor="dateOfBirth" className="form-label">Date of Birth</label>
-                <input type="date" className="form-control" id="dateOfBirth" name="dateOfBirth" />
+                <input type="date" className="form-control" id="dateOfBirth" name="dateOfBirth"  {...register('dateOfBirth', {
+                    required: 'Date of birth is required',
+                    validate: {
+                        notFutureDate: (value) => {
+                        const selectedDate = new Date(value);
+                        const today = new Date();
+                        return selectedDate <= today || 'Date of birth cannot be in the future';
+                        },
+                        minimumAge: (value) => {
+                        const dob = new Date(value);
+                        const today = new Date();
+                        const age = today.getFullYear() - dob.getFullYear();
+                        const monthDiff = today.getMonth() - dob.getMonth();
+                        const dayDiff = today.getDate() - dob.getDate();
+                        const isOldEnough = age > 17 || (age === 17 && (monthDiff > 0 || (monthDiff === 0 && dayDiff >= 0)));
+                        return isOldEnough || 'You must be at least 17 years old';
+                        }
+                    }
+                    })}
+                />
+                {errors.dateOfBirth && <p className="pt-1 text-danger">{errors.dateOfBirth.message}</p>}
             </div>
 
             <div className="mb-3">
                 <label htmlFor="gender" className="form-label">Gender</label>
-                <select className="form-select" id="gender" name="gender">
+                <select className="form-select" id="gender" name="gender" 
+                  {...register('gender', {
+                    required: 'Please select your gender'
+                  })}
+                >
                 <option value="">Select gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
                 </select>
+                {errors.gender && <p className="pt-1 text-danger">{errors.gender.message}</p>}
             </div>
 
             <div className="mb-3">

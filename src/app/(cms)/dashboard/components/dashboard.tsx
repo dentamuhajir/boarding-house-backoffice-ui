@@ -6,12 +6,12 @@ export default function Dashboard() {
                     <div className="card-body">
                         <div className="row">
                             <div className="col">
-                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
-                                <span className="h3 font-bold mb-0">$750.90</span>
+                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Revenue</span>
+                                <span className="h3 font-bold mb-0">Rp 200.000</span>
                             </div>
                             <div className="col-auto">
                                 <div className="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                    <i className="bi bi-credit-card"></i>
+                                    <i className="bi bi-currency-dollar"></i>
                                 </div>
                             </div>
                         </div>
@@ -29,8 +29,8 @@ export default function Dashboard() {
                     <div className="card-body">
                         <div className="row">
                             <div className="col">
-                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">New projects</span>
-                                <span className="h3 font-bold mb-0">215</span>
+                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Total Users</span>
+                                <span className="h3 font-bold mb-0">24</span>
                             </div>
                             <div className="col-auto">
                                 <div className="icon icon-shape bg-primary text-white text-lg rounded-circle">
@@ -52,12 +52,12 @@ export default function Dashboard() {
                     <div className="card-body">
                         <div className="row">
                             <div className="col">
-                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Total hours</span>
-                                <span className="h3 font-bold mb-0">1.400</span>
+                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Total Kost</span>
+                                <span className="h3 font-bold mb-0">37</span>
                             </div>
                             <div className="col-auto">
                                 <div className="icon icon-shape bg-info text-white text-lg rounded-circle">
-                                    <i className="bi bi-clock-history"></i>
+                                    <i className="bi bi-house"></i>
                                 </div>
                             </div>
                         </div>
@@ -75,12 +75,12 @@ export default function Dashboard() {
                     <div className="card-body">
                         <div className="row">
                             <div className="col">
-                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Work load</span>
-                                <span className="h3 font-bold mb-0">95%</span>
+                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Total Booking</span>
+                                <span className="h3 font-bold mb-0">2</span>
                             </div>
                             <div className="col-auto">
                                 <div className="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                    <i className="bi bi-minecart-loaded"></i>
+                                    <i className="bi bi-credit-card"></i>
                                 </div>
                             </div>
                         </div>

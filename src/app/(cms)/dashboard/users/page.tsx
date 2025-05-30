@@ -72,20 +72,19 @@ export default function account() {
                         </thead>
                         <tbody>
                               {users.length === 0 && loading ? (
-                                // Show placeholder while loading
                                 [...Array(10)].map((_, index) => (
                                 <tr key={index}>
                                     <td>
-                                    <span className="placeholder col-12 placeholder-sm rounded"></span>
+                                    <span className="placeholder col-12 placeholder-sm rounded placeholder-wave"></span>
                                     </td>
                                     <td>
-                                    <span className="placeholder col-12 placeholder-sm rounded"></span>
+                                    <span className="placeholder col-12 placeholder-sm rounded placeholder-wave"></span>
                                     </td>
                                     <td>
-                                    <span className="placeholder col-12 placeholder-sm rounded"></span>
+                                    <span className="placeholder col-12 placeholder-sm rounded placeholder-wave"></span>
                                     </td>
                                     <td>
-                                        <span className="placeholder col-12 placeholder-sm rounded"></span>
+                                        <span className="placeholder col-12 placeholder-sm rounded placeholder-wave"></span>
                                     </td>
                                 </tr>
                                 ))

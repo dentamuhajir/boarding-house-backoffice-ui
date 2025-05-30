@@ -16,4 +16,10 @@ export class UserService {
         return response.data
     }
 
+    async getTotalUser() : Promise<any> {
+        const endpoint: string = this.baseUrl + '/users/total'
+        const response = (await axiosInstance.get<any>(endpoint)).data
+        return response.data
+    }
+
 }

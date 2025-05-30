@@ -9,7 +9,7 @@ export default function account() {
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState<number>()
-    const [loading, setLoading] = useState<Boolean>()
+    const [loading, setLoading] = useState<Boolean>(true)
 
     function openModalDetailUser(userId: number) {
         const userService = new UserService();
@@ -33,6 +33,8 @@ export default function account() {
     
     
     useEffect(() => {
+        //setLoading(true);
+
         const userService = new UserService()
         const loadUsers = async () => {
             try {
@@ -41,6 +43,8 @@ export default function account() {
             } catch (err: any) {
               console.error('Error loading users:', err);
               setError('Failed to load users. Please try again later.');
+            } finally {
+                setLoading(false); 
             }
           };
           loadUsers();
@@ -67,7 +71,26 @@ export default function account() {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map((user, index) => (
+                              {users.length === 0 && loading ? (
+                                // Show placeholder while loading
+                                [...Array(10)].map((_, index) => (
+                                <tr key={index}>
+                                    <td>
+                                    <span className="placeholder col-12 placeholder-sm rounded"></span>
+                                    </td>
+                                    <td>
+                                    <span className="placeholder col-12 placeholder-sm rounded"></span>
+                                    </td>
+                                    <td>
+                                    <span className="placeholder col-12 placeholder-sm rounded"></span>
+                                    </td>
+                                    <td>
+                                        <span className="placeholder col-12 placeholder-sm rounded"></span>
+                                    </td>
+                                </tr>
+                                ))
+                            ) : (
+                            users.map((user, index) => (
                             <tr key={user.id}>
                                 <td>
                                     <img alt="..." src={ user.profilePicture } className="avatar avatar-sm rounded-circle me-2"/>
@@ -91,7 +114,9 @@ export default function account() {
                                     </button>
                                 </td>
                             </tr>
-                            ))}
+                            ))
+                        
+                        )}
                         </tbody>
                     </table>
                 </div>

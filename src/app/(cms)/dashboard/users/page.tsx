@@ -1,12 +1,35 @@
 'use client'
-import { User } from "@models/User";
+import { EndUser, User } from "@models/User";
 import { UserService } from "@services/userService"
 import Link from "next/link";
 import { useEffect, useState } from "react"
 export default function account() {
     const [users, setUsers] = useState<User[]>([])
+    const [userDetail, setUserDetail] = useState<EndUser>()
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
+    const [selectedUserId, setSelectedUserId] = useState<number>()
+    const [loading, setLoading] = useState<Boolean>()
+
+    function openModalDetailUser(userId: number) {
+        const userService = new UserService();
+        setLoading(true); 
+
+        const loadUserDetail = async () => {
+            try {
+                const data = await userService.getUser(userId);
+                setUserDetail(data);
+                setShowModal(true);
+            } catch (err: any) {
+                console.error('Error loading user:', err);
+                setError('Failed to load user.');
+            } finally {
+                setLoading(false); 
+            }
+        };
+
+        loadUserDetail();
+    }
     
     
     useEffect(() => {
@@ -62,7 +85,7 @@ export default function account() {
                                     </a>
                                 </td>
                                 <td className="text-end">
-                                    <a href="#" className="btn btn-sm btn-neutral" onClick={() => setShowModal(true)}>View</a>
+                                    <a href="#" className="btn btn-sm btn-neutral" onClick={() => openModalDetailUser(user.id)}>View</a>
                                     <button type="button" className="btn btn-sm btn-square btn-neutral text-danger-hover">
                                         <i className="bi bi-trash"></i>
                                     </button>
@@ -89,7 +112,7 @@ export default function account() {
                 <div className="modal-content">
 
                     <div className="modal-header">
-                    <h5 className="modal-title" id="userInfoModalLabel">User Info: Tasha Funk</h5>
+                    <h5 className="modal-title" id="userInfoModalLabel">User Info: { userDetail?.name }</h5>
                     <button type="button" className="btn-close" aria-label="Close" onClick={() => setShowModal(false)}></button>
                     </div>
 
@@ -97,7 +120,7 @@ export default function account() {
                     <form>
                         <div className="text-center mb-4">
                         <img
-                            src="https://i.pravatar.cc/50?img=19"
+                            src={ userDetail?.profilePicture }
                             alt="Profile"
                             className="rounded-circle border"
                         />
@@ -106,44 +129,44 @@ export default function account() {
                         <div className="row mb-3">
                         <div className="col-md-6">
                             <label className="form-label">Name</label>
-                            <input type="text" className="form-control" value="Tasha Funk" readOnly />
+                            <input type="text" className="form-control" value={ userDetail?.name } readOnly />
                         </div>
                         <div className="col-md-6">
                             <label className="form-label">Username</label>
-                            <input type="text" className="form-control" value="tashafunk" readOnly />
+                            <input type="text" className="form-control" value={userDetail?.username} readOnly />
                         </div>
                         </div>
 
                         <div className="row mb-3">
                         <div className="col-md-6">
                             <label className="form-label">Email</label>
-                            <input type="email" className="form-control" value="tashafunk@gmail.com" readOnly />
+                            <input type="email" className="form-control" value={userDetail?.email} readOnly />
                         </div>
                         <div className="col-md-6">
                             <label className="form-label">Phone Number</label>
-                            <input type="text" className="form-control" value="588-684-0009" readOnly />
+                            <input type="text" className="form-control" value={userDetail?.phoneNumber} readOnly />
                         </div>
                         </div>
 
                         <div className="row mb-3">
                         <div className="col-md-6">
                             <label className="form-label">Date of Birth</label>
-                            <input type="date" className="form-control" value="1986-03-27" readOnly />
+                            <input type="date" className="form-control" value={userDetail?.dateOfBirth} readOnly />
                         </div>
                         <div className="col-md-6">
                             <label className="form-label">Gender</label>
-                            <input type="text" className="form-control" value="Female" readOnly />
+                            <input type="text" className="form-control" value={userDetail?.gender} readOnly />
                         </div>
                         </div>
 
                         <div className="mb-3">
                         <label className="form-label">Occupation</label>
-                        <input type="text" className="form-control" value="Banking Coordinator" readOnly />
+                        <input type="text" className="form-control" value={userDetail?.occupation} readOnly />
                         </div>
 
                         <div className="mb-3">
                         <label className="form-label">Password</label>
-                        <input type="text" className="form-control" value="wwt1zf92y35" readOnly />
+                        <input type="text" className="form-control" value={userDetail?.password} readOnly />
                         </div>
                     </form>
                     </div>

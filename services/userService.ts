@@ -1,4 +1,4 @@
-import { User } from "@models/User"
+import { EndUser, User } from "@models/User"
 import axiosInstance from "../lib/axios"
 
 export class UserService {
@@ -9,4 +9,11 @@ export class UserService {
         const response = (await axiosInstance.get<any>(endpoint)).data
         return response.data
     }
+
+    async getUser(id: number) : Promise<EndUser> {
+        const endpoint: string = this.baseUrl + '/users/' + id
+        const response = (await axiosInstance.get<any>(endpoint)).data
+        return response.data
+    }
+
 }

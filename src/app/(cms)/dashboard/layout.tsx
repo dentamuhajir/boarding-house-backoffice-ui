@@ -1,5 +1,6 @@
 
-import Header from "./components/header";
+import Dashboard from "./components/dashboard";
+import Header from "./components/header/header";
 import Sidebar from "./components/sidebar/sidebar";
 export default function DashboardLayout({
     children,
@@ -12,6 +13,12 @@ export default function DashboardLayout({
             <Sidebar/>
             <div className="h-screen flex-grow-1 overflow-y-lg-auto">
               <Header />  
+              <main className="py-6 bg-surface-secondary">
+                <div className="container-fluid">
+                  <Dashboard />
+                  { children }
+                </div>
+              </main>
             </div>
           </div>
         </>

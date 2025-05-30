@@ -1,8 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 const menuItems = [
     { label: 'dashboard', path: '/dashboard'},
-    
-
 ]
 export default function sidebar() {
     return(
@@ -15,7 +14,7 @@ export default function sidebar() {
                 
                 <a className="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
                     <Image
-                        src="/images/logo/kostfinder.png"
+                        src="/images/logo/kostfinder-no-bg.png"
                         alt="Kost Finder Logo"
                         width={100} 
                         height={24}
@@ -47,14 +46,14 @@ export default function sidebar() {
                     
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" href='/dashboard'>
                                 <i className="bi bi-graph-up"></i> Dashboard
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" href='/dashboard/users'>
                                 <i className="bi bi-people"></i> Users Management
-                            </a>
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">

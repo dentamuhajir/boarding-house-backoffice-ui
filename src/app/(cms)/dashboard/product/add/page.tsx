@@ -1,19 +1,27 @@
 'use client'
 
+import { useForm } from "react-hook-form";
+
 export default function add() {
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        alert("Handle submit clicked")
-
+    const onSubmit = (data: any) => {
+        console.log(data)
     }
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     alert("Handle submit clicked")
+
+    // }
     return <>
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={ handleSubmit(onSubmit) }>
         <h3>Add Boarding House (Kost)</h3>
         
         <div className="mb-3">
             <label  className="form-label">Name</label>
-            <input type="text" className="form-control" id="kostName" placeholder="Enter boarding house name" />
+            <input type="text" className="form-control" id="kostName" placeholder="Enter boarding house name" {...register('name', {required: true, maxLength: 10})} />
+            { errors.name && <p>Input name is mandatory</p>}
         </div>
 
         <div className="mb-3">

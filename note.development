@@ -22,6 +22,9 @@
 # Template
     https://codepen.io/Amazdev/pen/LYXYpRE?editors=0100
 
+# Webpixel CSS
+    https://docs.webpixels.io/css/containers
+
 # Default structure
 /app
   /page.tsx

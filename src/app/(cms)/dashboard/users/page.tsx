@@ -3,12 +3,13 @@ import { EndUser, User } from "@models/User";
 import { UserService } from "@services/userService"
 import Link from "next/link";
 import { useEffect, useState } from "react"
+import DeleteModal from "../components/modal/delete";
 export default function account() {
     const [users, setUsers] = useState<User[]>([])
     const [userDetail, setUserDetail] = useState<EndUser>()
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
-    const [selectedUserId, setSelectedUserId] = useState<number>()
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [loading, setLoading] = useState<Boolean>(true)
 
     function openModalDetailUser(userId: number) {
@@ -49,6 +50,11 @@ export default function account() {
           };
           loadUsers();
     },[])
+
+    const handleDelete = () => {
+        console.log("Item deleted");
+        setShowModal(false);
+    };
 
     //console.log(users)
 
@@ -108,7 +114,7 @@ export default function account() {
                                 </td>
                                 <td className="text-end">
                                     <a href="#" className="btn btn-sm btn-neutral" onClick={() => openModalDetailUser(user.id)}>View</a>
-                                    <button type="button" className="btn btn-sm btn-square btn-neutral text-danger-hover">
+                                    <button type="button" className="btn btn-sm btn-square btn-neutral text-danger-hover" onClick={() => setShowDeleteModal(true)}>
                                         <i className="bi bi-trash"></i>
                                     </button>
                                 </td>
@@ -120,7 +126,6 @@ export default function account() {
                     </table>
                 </div>
                 <div className="card-footer border-0 py-5">
-                    
                     <span className="text-muted text-sm">Showing 10 items out of 250 results found</span>
                 </div>
             </div>
@@ -201,6 +206,7 @@ export default function account() {
                 </div>
                 </div>
             </div>
+            <DeleteModal show={showDeleteModal} onClose={() => setShowDeleteModal(false)} onDelete={handleDelete} />
         </>
     )
 }

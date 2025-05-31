@@ -4,9 +4,10 @@ import { UserService } from "@services/userService"
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react"
 import DeleteModal from "../components/modal/delete";
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-export default function User() {
-    const [users, setUsers] = useState<User[]>([])
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+const USERS_QUERY_KEY = ['users']
+export default function UserPage() {
+    //const [users, setUsers] = useState<User[]>([])
     const [userDetail, setUserDetail] = useState<EndUser>()
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
@@ -46,29 +47,39 @@ export default function User() {
 
         // loadUserDetail();
     }
-    
-    
-    useEffect(() => {
-        //setLoading(true);
 
-        const loadUsers = async () => {
-            try {
-              const data = await userService.getUsers();
-              setUsers(data);
-            } catch (err: any) {
-              console.error('Error loading users:', err);
-              setError('Failed to load users. Please try again later.');
-            } finally {
-                setUserListLoading(false); 
-            }
-          };
-          loadUsers();
-    },[])
+    const {
+        data: users,
+        error: errorUsers,
+        isError: isErrorUsers,
+        isPending: isPendingUsers, 
+    } = useQuery({
+        queryKey: USERS_QUERY_KEY,
+        queryFn: () => userService.getUsers(),
+    });
+    
+    
+    // useEffect(() => {
+    //     //setLoading(true);
+
+    //     const loadUsers = async () => {
+    //         try {
+    //           const data = await userService.getUsers();
+    //           setUsers(data);
+    //         } catch (err: any) {
+    //           console.error('Error loading users:', err);
+    //           setError('Failed to load users. Please try again later.');
+    //         } finally {
+    //             setUserListLoading(false); 
+    //         }
+    //       };
+    //       loadUsers();
+    // },[])
 
     const deleteMutation = useMutation({
         mutationFn: (id: number) => userService.deleteUser(id),
         onSuccess: () => {
-            //queryClient.invalidateQueries({ queryKey: ['users'] });
+            queryClient.invalidateQueries({ queryKey: ['users'] });
             queryClient.invalidateQueries({ queryKey: ['totalUsers'] });
             setShowDeleteModal(false); // close modal on success
         },
@@ -103,7 +114,7 @@ export default function User() {
                             </tr>
                         </thead>
                         <tbody>
-                              {users.length === 0 && userListLoading ? (
+                              {isPendingUsers ? (
                                 [...Array(10)].map((_, index) => (
                                 <tr key={index}>
                                     <td>
@@ -121,7 +132,7 @@ export default function User() {
                                 </tr>
                                 ))
                             ) : (
-                            users.map((user, index) => (
+                            users?.map((user, index) => (
                             <tr key={user.id}>
                                 <td>
                                     <img alt="..." src={ user.profilePicture } className="avatar avatar-sm rounded-circle me-2"/>

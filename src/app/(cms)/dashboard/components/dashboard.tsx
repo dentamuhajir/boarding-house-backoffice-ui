@@ -1,49 +1,30 @@
 'use client'
 
 import { UserService } from "@services/userService";
-import { useEffect, useMemo, useState } from "react"
+import { useMemo } from "react"
 import { useQuery } from '@tanstack/react-query';
+
+
+const TOTAL_USERS_QUERY_KEY = ['totalUsers'];
 
 
 export default function Dashboard() {
 
-    const [totalUsers, setTotalUsers] = useState<any>()
-    //const [error, setError] = useState<string | null>(null);
-    const [loading, setLoading] = useState<Boolean>(true);
     // to avoid create an instance service multiple
     const userService = useMemo(() => new UserService(), []);
 
-    // const {
-    //     data: totalUsers,
-    //     isLoading,
-    //     isError,
-    //     error
-    // } = useQuery(['totalUsers'], () => userService.getTotalUser);
+    const {
+        data: totalUsers,
+        error,
+        isError,
+        isPending, // v5: use `isPending` instead of `isLoading`
+    } = useQuery({
+        queryKey: TOTAL_USERS_QUERY_KEY,
+        queryFn: () => userService.getTotalUser(),
+    });
 
-//     const { data: totalUsers, isLoading, isError, error } = useQuery(totalUsers'], userService.getTotalUsers);
+    // if (isError) return <p>Error: {error.message}</p>;
 
-// if (isLoading) return <p>Loading...</p>;
-// if (isError) return <p>Error: {error.message}</p>;
-
-    
-
-    useEffect(() => {
-        const loadTotalUsers = async () => {
-            try {
-              const data = await userService.getTotalUser();
-              setTotalUsers(data.totalUsers);
-            } catch (err: any) {
-              //console.error('Error loading users:', err);
-              //setError('Failed to load users. Please try again later.');
-            } finally {
-                setLoading(false); 
-            }
-          };
-          loadTotalUsers();
-
-    }, [])
-
-    console.log(totalUsers);
     
     return(
         <div className="row g-6 mb-6">
@@ -76,11 +57,11 @@ export default function Dashboard() {
                         <div className="row">
                             <div className="col">
                                 <span className="h6 font-semibold text-muted text-sm d-block mb-2">Total Users</span>
-                                { loading ? ( 
+                                { isPending ? ( 
                                     <span className="placeholder col-3 placeholder-sm rounded placeholder-wave"></span>
                                 ) : 
                                 (   
-                                    <span className="h3 font-bold mb-0">{ totalUsers }</span> 
+                                    <span className="h3 font-bold mb-0">{ totalUsers?.totalUsers}</span> 
                                 )}
                              
                              

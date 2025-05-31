@@ -1,4 +1,31 @@
+'use client'
+
+import { UserService } from "@services/userService";
+import { useMemo } from "react"
+import { useQuery } from '@tanstack/react-query';
+
+
+const TOTAL_USERS_QUERY_KEY = ['totalUsers'];
+
+
 export default function Dashboard() {
+
+    // to avoid create an instance service multiple
+    const userService = useMemo(() => new UserService(), []);
+
+    const {
+        data: totalUsers,
+        error,
+        isError,
+        isPending, // v5: use `isPending` instead of `isLoading`
+    } = useQuery({
+        queryKey: TOTAL_USERS_QUERY_KEY,
+        queryFn: () => userService.getTotalUser(),
+    });
+
+    // if (isError) return <p>Error: {error.message}</p>;
+
+    
     return(
         <div className="row g-6 mb-6">
             <div className="col-xl-3 col-sm-6 col-12">
@@ -30,7 +57,14 @@ export default function Dashboard() {
                         <div className="row">
                             <div className="col">
                                 <span className="h6 font-semibold text-muted text-sm d-block mb-2">Total Users</span>
-                                <span className="h3 font-bold mb-0">24</span>
+                                { isPending ? ( 
+                                    <span className="placeholder col-3 placeholder-sm rounded placeholder-wave"></span>
+                                ) : 
+                                (   
+                                    <span className="h3 font-bold mb-0">{ totalUsers?.totalUsers}</span> 
+                                )}
+                             
+                             
                             </div>
                             <div className="col-auto">
                                 <div className="icon icon-shape bg-primary text-white text-lg rounded-circle">

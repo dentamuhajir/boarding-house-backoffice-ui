@@ -37,3 +37,18 @@ Client Component → interactivity, Redux
 # Reference 
     https://medium.com/@aslandjc7/the-power-of-server-components-why-you-should-stop-using-useeffect-for-data-fetching-in-next-js-12a44f54f350#:~:text=Conclusion,SEO%2C%20✅%20Better%20user%20experience.
 
+# React Query
+    install npm install @tanstack/react-query
+    - Key Return
+    const {
+        data,          // the fetched data (can be undefined if loading or error)
+        error,         // error object if fetch failed
+        isLoading,     // true only on initial load
+        isError,       // true if fetch failed
+        isSuccess,     // true if data loaded successfully
+        isFetching,    // true while a refetch is happening (even after first load)
+        status         // 'loading' | 'error' | 'success'
+    } = useQuery(['myQueryKey'], fetchFunction);
+
+    New v5
+    https://dreamix.eu/insights/tanstack-query-v5-migration-made-easy-key-aspects-breaking-changes/

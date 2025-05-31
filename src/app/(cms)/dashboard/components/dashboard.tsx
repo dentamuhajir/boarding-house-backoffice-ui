@@ -1,23 +1,40 @@
 'use client'
 
 import { UserService } from "@services/userService";
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
+import { useQuery } from '@tanstack/react-query';
+
 
 export default function Dashboard() {
 
     const [totalUsers, setTotalUsers] = useState<any>()
-    const [error, setError] = useState<string | null>(null);
+    //const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<Boolean>(true);
+    // to avoid create an instance service multiple
+    const userService = useMemo(() => new UserService(), []);
+
+    // const {
+    //     data: totalUsers,
+    //     isLoading,
+    //     isError,
+    //     error
+    // } = useQuery(['totalUsers'], () => userService.getTotalUser);
+
+//     const { data: totalUsers, isLoading, isError, error } = useQuery(totalUsers'], userService.getTotalUsers);
+
+// if (isLoading) return <p>Loading...</p>;
+// if (isError) return <p>Error: {error.message}</p>;
+
+    
 
     useEffect(() => {
-        const userService = new UserService()
         const loadTotalUsers = async () => {
             try {
               const data = await userService.getTotalUser();
               setTotalUsers(data.totalUsers);
             } catch (err: any) {
-              console.error('Error loading users:', err);
-              setError('Failed to load users. Please try again later.');
+              //console.error('Error loading users:', err);
+              //setError('Failed to load users. Please try again later.');
             } finally {
                 setLoading(false); 
             }

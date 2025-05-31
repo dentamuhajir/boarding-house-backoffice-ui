@@ -22,4 +22,10 @@ export class UserService {
         return response.data
     }
 
+    async deleteUser(id: number) : Promise<any> {
+        const endpoint: string = this.baseUrl + '/users/' + id
+        const response = (await axiosInstance.delete<any>(endpoint)).data
+        return response.data
+    }
+
 }

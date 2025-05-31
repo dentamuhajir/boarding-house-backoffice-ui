@@ -2,19 +2,23 @@
 import { EndUser, User } from "@models/User";
 import { UserService } from "@services/userService"
 import Link from "next/link";
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import DeleteModal from "../components/modal/delete";
-export default function account() {
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+export default function User() {
     const [users, setUsers] = useState<User[]>([])
     const [userDetail, setUserDetail] = useState<EndUser>()
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedUser, setSelectedUser] = useState<User>()
     const [userListLoading, setUserListLoading] = useState<Boolean>(true)
     const [userDetailLoading, setUserDetailLoading] = useState<Boolean>(true)
 
+    const queryClient = useQueryClient();
+    const userService = useMemo(() => new UserService(), []);
+
     function openModalDetailUser(userId: number) {
-        const userService = new UserService();
         setUserDetailLoading(true); 
 
         userService.getUser(userId).then(data => {
@@ -47,7 +51,6 @@ export default function account() {
     useEffect(() => {
         //setLoading(true);
 
-        const userService = new UserService()
         const loadUsers = async () => {
             try {
               const data = await userService.getUsers();
@@ -62,10 +65,21 @@ export default function account() {
           loadUsers();
     },[])
 
-    const handleDelete = () => {
-        alert("clicked")
-        console.log("Item deleted");
-        setShowModal(false);
+    const deleteMutation = useMutation({
+        mutationFn: (id: number) => userService.deleteUser(id),
+        onSuccess: () => {
+            //queryClient.invalidateQueries({ queryKey: ['users'] });
+            queryClient.invalidateQueries({ queryKey: ['totalUsers'] });
+            setShowDeleteModal(false); // close modal on success
+        },
+        onError: (err) => {
+            console.error("Delete error:", err);
+            alert("Failed to delete user.");
+        }
+    });
+
+    const handleDelete = (id: number) => {
+        deleteMutation.mutate(id);
     };
 
     //console.log(users)
@@ -126,7 +140,7 @@ export default function account() {
                                 </td>
                                 <td className="text-end">
                                     <a href="#" className="btn btn-sm btn-neutral" onClick={() => openModalDetailUser(user.id)}>View</a>
-                                    <button type="button" className="btn btn-sm btn-square btn-neutral text-danger-hover" onClick={() => setShowDeleteModal(true)}>
+                                    <button type="button" className="btn btn-sm btn-square btn-neutral text-danger-hover" onClick={() => [setShowDeleteModal(true), setSelectedUser(user)]}>
                                         <i className="bi bi-trash"></i>
                                     </button>
                                 </td>
@@ -218,7 +232,7 @@ export default function account() {
                 </div>
                 </div>
             </div>
-            <DeleteModal show={showDeleteModal} onClose={() => setShowDeleteModal(false)} onDelete={handleDelete} />
+            <DeleteModal show={showDeleteModal} onClose={() => setShowDeleteModal(false)} onDelete={() => handleDelete(selectedUser?.id!)} />
         </>
     )
 }

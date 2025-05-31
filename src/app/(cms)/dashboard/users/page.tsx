@@ -10,26 +10,37 @@ export default function account() {
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [loading, setLoading] = useState<Boolean>(true)
+    const [userListLoading, setUserListLoading] = useState<Boolean>(true)
+    const [userDetailLoading, setUserDetailLoading] = useState<Boolean>(true)
 
     function openModalDetailUser(userId: number) {
         const userService = new UserService();
-        setLoading(true); 
+        setUserDetailLoading(true); 
 
-        const loadUserDetail = async () => {
-            try {
-                const data = await userService.getUser(userId);
-                setUserDetail(data);
-                setShowModal(true);
-            } catch (err: any) {
-                console.error('Error loading user:', err);
-                setError('Failed to load user.');
-            } finally {
-                setLoading(false); 
-            }
-        };
+        userService.getUser(userId).then(data => {
+            setUserDetail(data);
+            setShowModal(true);
+        })
+        .catch(err => {
+            console.error('Error loading user:', err);
+            setError('Failed to load user.');
+        })
+        .finally(() => setUserDetailLoading(false));
 
-        loadUserDetail();
+        // const loadUserDetail = async () => {
+        //     try {
+        //         const data = await userService.getUser(userId);
+        //         setUserDetail(data);
+        //         setShowModal(true);
+        //     } catch (err: any) {
+        //         console.error('Error loading user:', err);
+        //         setError('Failed to load user.');
+        //     } finally {
+        //         setUserDetailLoading(false); 
+        //     }
+        // };
+
+        // loadUserDetail();
     }
     
     
@@ -45,13 +56,14 @@ export default function account() {
               console.error('Error loading users:', err);
               setError('Failed to load users. Please try again later.');
             } finally {
-                setLoading(false); 
+                setUserListLoading(false); 
             }
           };
           loadUsers();
     },[])
 
     const handleDelete = () => {
+        alert("clicked")
         console.log("Item deleted");
         setShowModal(false);
     };
@@ -77,7 +89,7 @@ export default function account() {
                             </tr>
                         </thead>
                         <tbody>
-                              {users.length === 0 && loading ? (
+                              {users.length === 0 && userListLoading ? (
                                 [...Array(10)].map((_, index) => (
                                 <tr key={index}>
                                     <td>

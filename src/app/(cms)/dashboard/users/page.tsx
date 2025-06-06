@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react"
 import DeleteModal from "../components/modal/delete";
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-const USERS_QUERY_KEY = ['users']
+const USERS_QUERY_KEY = ['usersQK']
 export default function UserPage() {
     //const [users, setUsers] = useState<User[]>([])
     const [userDetail, setUserDetail] = useState<EndUser>()
@@ -49,13 +49,17 @@ export default function UserPage() {
     }
 
     const {
-        data: users,
+        data: data,
         error: errorUsers,
         isError: isErrorUsers,
         isPending: isPendingUsers, 
     } = useQuery({
         queryKey: USERS_QUERY_KEY,
-        queryFn: () => userService.getUsers(),
+        queryFn: () => {
+            const res = userService.getUsers()
+            return res
+        }
+        
     });
     
     
@@ -79,7 +83,7 @@ export default function UserPage() {
     const deleteMutation = useMutation({
         mutationFn: (id: number) => userService.deleteUser(id),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['users'] });
+            queryClient.invalidateQueries({ queryKey: ['usersQK'] });
             queryClient.invalidateQueries({ queryKey: ['totalUsers'] });
             setShowDeleteModal(false); // close modal on success
         },
@@ -114,7 +118,7 @@ export default function UserPage() {
                             </tr>
                         </thead>
                         <tbody>
-                              {isPendingUsers ? (
+                              {isPendingUsers  ? (
                                 [...Array(10)].map((_, index) => (
                                 <tr key={index}>
                                     <td>
@@ -132,7 +136,7 @@ export default function UserPage() {
                                 </tr>
                                 ))
                             ) : (
-                            users?.map((user, index) => (
+                            data?.users?.map((user, index) => (
                             <tr key={user.id}>
                                 <td>
                                     <img alt="..." src={ user.profilePicture } className="avatar avatar-sm rounded-circle me-2"/>

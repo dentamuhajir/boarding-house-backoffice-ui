@@ -4,7 +4,7 @@ import axiosInstance from "../lib/axios"
 export class UserService {
     private baseUrl:string = "http://localhost:8081"
 
-    async getUsers() : Promise<User[]> {
+    async getUsers() : Promise<any> {
         const endpoint: string = this.baseUrl + '/users'
         const response = (await axiosInstance.get<any>(endpoint)).data
         return response.data

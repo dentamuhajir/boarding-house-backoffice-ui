@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://fakestoreapi.com' , 
+  baseURL: 'http://localhost:8081' , 
   headers: {
     'Content-Type': 'application/json',
   },

@@ -1,12 +1,14 @@
 import { EndUser, User } from "@models/User"
 import axiosInstance from "../lib/axios"
+import { APIResponse } from "@models/APIResponse"
+import { Paginated } from "@models/Paginated"
 
 export class UserService {
     private baseUrl:string|undefined = axiosInstance.defaults.baseURL
 
-    async getUsers() : Promise<any> {
+    async getUsers() : Promise<Paginated<User[]>> {
         const endpoint: string = this.baseUrl + '/users'
-        const response = (await axiosInstance.get<any>(endpoint)).data
+        const response = (await axiosInstance.get<APIResponse<Paginated<User[]>>>(endpoint)).data
         return response.data
     }
 

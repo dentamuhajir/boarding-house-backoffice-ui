@@ -14,9 +14,9 @@ export default function Dashboard() {
     const userService = useMemo(() => new UserService(), []);
 
     const {
-        data: totalUsers,
-        error,
-        isError,
+        data: data,
+        error: errorTotalUser,
+        isError: isErrorTotalUser,
         isPending, // v5: use `isPending` instead of `isLoading`
     } = useQuery({
         queryKey: TOTAL_USERS_QUERY_KEY,
@@ -38,7 +38,7 @@ export default function Dashboard() {
                             </div>
                             <div className="col-auto">
                                 <div className="icon icon-shape bg-tertiary text-white text-lg rounded-circle">
-                                    <i className="bi bi-currency-dollar"></i>
+                                    <i className="bi bi-cash"></i>
                                 </div>
                             </div>
                         </div>
@@ -59,12 +59,11 @@ export default function Dashboard() {
                                 <span className="h6 font-semibold text-muted text-sm d-block mb-2">Total Users</span>
                                 { isPending ? ( 
                                     <span className="placeholder col-3 placeholder-sm rounded placeholder-wave"></span>
-                                ) : 
-                                (   
-                                    <span className="h3 font-bold mb-0">{ totalUsers?.totalUsers}</span> 
-                                )}
-                             
-                             
+                                ) : isErrorTotalUser ? (
+                                    <span className="badge bg-danger">Service not available</span> 
+                                ) : (
+                                    <span className="h3 font-bold mb-0">{data?.totalUsers}</span>
+                                )} 
                             </div>
                             <div className="col-auto">
                                 <div className="icon icon-shape bg-primary text-white text-lg rounded-circle">

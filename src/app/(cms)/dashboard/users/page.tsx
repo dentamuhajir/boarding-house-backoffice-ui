@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react"
 import DeleteModal from "../components/modal/delete";
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useFetcher } from "react-router-dom";
+import { AxiosError } from "axios";
 const USERS_QUERY_KEY = ['usersQK']
 export default function UserPage() {
     //const [users, setUsers] = useState<User[]>([])
@@ -61,7 +63,13 @@ export default function UserPage() {
         }
         
     });
-    
+
+    // if(isErrorUsers) {
+    //     alert(isErrorUsers)
+    // }
+
+    // if (isPending) return <p>Loading...</p>;
+ 
     
     // useEffect(() => {
     //     //setLoading(true);
@@ -96,6 +104,20 @@ export default function UserPage() {
     const handleDelete = (id: number) => {
         deleteMutation.mutate(id);
     };
+
+
+
+    if (isErrorUsers) {
+        const axiosError = errorUsers as AxiosError;
+    
+
+        return (
+            <div className="alert alert-danger">
+                Error: {axiosError.response?.data?.message || axiosError.message}
+            </div>
+        );
+    }
+   
 
     //console.log(users)
 

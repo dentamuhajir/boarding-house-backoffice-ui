@@ -189,12 +189,12 @@ export default function UserPage() {
                     </table>
                 </div>
                 <div className="card-footer border-0 py-5">
-                    <span className="text-muted text-sm">Showing 10 items out of 250 results found</span>
+                    <span className="text-muted text-sm">Showing { data?.totalItems  < 10 ? data?.totalItems : 10 } items out of { data?.totalItems } results found</span>
                 </div>
             </div>
             <div
                 className={`modal fade ${showModal ? "show d-block" : ""}`}
-                tabIndex="-1"
+                tabIndex={-1}
                 aria-labelledby="userInfoModalLabel"
                 aria-modal={showModal ? "true" : undefined}
                 role="dialog"

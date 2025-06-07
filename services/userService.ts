@@ -2,7 +2,7 @@ import { EndUser, User } from "@models/User"
 import axiosInstance from "../lib/axios"
 
 export class UserService {
-    private baseUrl:string = "http://localhost:8081"
+    private baseUrl:string|undefined = axiosInstance.defaults.baseURL
 
     async getUsers() : Promise<any> {
         const endpoint: string = this.baseUrl + '/users'

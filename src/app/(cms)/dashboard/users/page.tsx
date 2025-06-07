@@ -158,7 +158,7 @@ export default function UserPage() {
                                 </tr>
                                 ))
                             ) : (
-                            data?.users?.map((user, index) => (
+                            data?.users?.map((user: User, index: number) => (
                             <tr key={user.id}>
                                 <td>
                                     <img alt="..." src={ user.profilePicture } className="avatar avatar-sm rounded-circle me-2"/>

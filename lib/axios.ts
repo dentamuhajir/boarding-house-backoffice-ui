@@ -12,14 +12,17 @@ axiosInstance.interceptors.response.use(
   response => response,
   (error: AxiosError) => {
     if (error.code === 'ECONNABORTED') {
-      console.error('⏰ Request timed out');
+      console.log('Request timed out');
     } else if (!error.response) {
-      console.error('📡 Network error:', error.message);
+      //alert("Network Error")
+      console.log('Network error:', error.message);
     } else {
-      console.error('❌ Response error:', error.response.status, error.response.data);
+      // if use console error made next error page appeear
+      console.log('Response error:', error.response.status, error.response.data);
     }
 
     return Promise.reject(error); 
   }
 );
 export default axiosInstance;
+

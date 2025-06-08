@@ -6,8 +6,10 @@ import { Paginated } from "@models/Paginated"
 export class UserService {
     private baseUrl:string|undefined = axiosInstance.defaults.baseURL
 
-    async getUsers() : Promise<Paginated<User[]>> {
-        const endpoint: string = this.baseUrl + '/users'
+    //localhost:8081/users?page=0&size=10&sort=id,desc
+
+    async getUsers(page: number, size: number) : Promise<Paginated<User[]>> {
+        const endpoint: string = this.baseUrl + '/users?page=' + page + '&size=' + size;
         const response = (await axiosInstance.get<APIResponse<Paginated<User[]>>>(endpoint)).data
         return response.data
     }

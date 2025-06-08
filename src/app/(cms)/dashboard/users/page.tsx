@@ -18,6 +18,7 @@ export default function UserPage() {
     const [selectedUser, setSelectedUser] = useState<User>()
     const [userListLoading, setUserListLoading] = useState<Boolean>(true)
     const [userDetailLoading, setUserDetailLoading] = useState<Boolean>(true)
+    const [page, setPage] = useState<number>(0);
 
     const queryClient = useQueryClient();
     const userService = useMemo(() => new UserService(), []);
@@ -59,7 +60,7 @@ export default function UserPage() {
     } = useQuery({
         queryKey: USERS_QUERY_KEY,
         queryFn: () => {
-            const res = userService.getUsers()
+            const res = userService.getUsers(3, 10)
             return res
         }
         
@@ -190,7 +191,7 @@ export default function UserPage() {
                     </table>
                 </div>
                 <div className="card-footer border-0 py-5">
-                    <Paginate/>
+                    <Paginate totalPage={data?.totalPages} />
                     <span className="text-muted text-sm">Showing { data?.totalItems  < 10 ? data?.totalItems : 10 } items out of { data?.totalItems } results found</span>
                 </div>
             </div>

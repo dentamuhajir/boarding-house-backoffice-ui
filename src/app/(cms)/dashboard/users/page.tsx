@@ -22,6 +22,7 @@ export default function UserPage() {
 
     const queryClient = useQueryClient();
     const userService = useMemo(() => new UserService(), []);
+    
 
     function openModalDetailUser(userId: number) {
         setUserDetailLoading(true); 
@@ -58,16 +59,17 @@ export default function UserPage() {
         isError: isErrorUsers,
         isPending: isPendingUsers, 
     } = useQuery({
-        queryKey: USERS_QUERY_KEY,
+        queryKey: ['usersQK', page],
         queryFn: () => {
-            const res = userService.getUsers(3, 10)
+            const res = userService.getUsers(page)
             return res
         }
         
     });
 
     const handleChangePage = (selectedPage: number) => {
-        alert(selectedPage)
+        setPage(selectedPage)
+    
     }
 
     // if(isErrorUsers) {
@@ -147,7 +149,7 @@ export default function UserPage() {
                         </thead>
                         <tbody>
                               {isPendingUsers  ? (
-                                [...Array(10)].map((_, index) => (
+                                [...Array(5)].map((_, index) => (
                                 <tr key={index}>
                                     <td>
                                     <span className="placeholder col-12 placeholder-sm rounded placeholder-wave"></span>

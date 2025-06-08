@@ -8,7 +8,7 @@ export class UserService {
 
     //localhost:8081/users?page=0&size=10&sort=id,desc
 
-    async getUsers(page: number, size: number) : Promise<Paginated<User[]>> {
+    async getUsers(page: number = 0, size: number = 5) : Promise<Paginated<User[]>> {
         const endpoint: string = this.baseUrl + '/users?page=' + page + '&size=' + size;
         const response = (await axiosInstance.get<APIResponse<Paginated<User[]>>>(endpoint)).data
         return response.data

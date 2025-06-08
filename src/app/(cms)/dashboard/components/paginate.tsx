@@ -5,7 +5,7 @@ export default function Paginate({totalPage, currentPage}: any) {
     for(let i = 0 ; i < totalPage; i++ ) {
         pageNumber.push(
             <li key={i} className="page-item">
-                <a className="page-link" onClick={() => {currentPage(i + 1)}} >{i + 1}</a>
+                <a className="page-link" onClick={() => {currentPage(i)}} >{i + 1}</a>
             </li>
         )
     }

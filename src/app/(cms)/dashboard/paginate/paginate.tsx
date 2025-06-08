@@ -1,11 +1,13 @@
-export default function Paginate({totalPage, currentPage}: any) {
+import styles from "./paginate.module.css"
+
+export default function Paginate({totalPage, currentPage, onChangePage}: any) {
 
 
     let pageNumber = []
     for(let i = 0 ; i < totalPage; i++ ) {
         pageNumber.push(
-            <li key={i} className="page-item">
-                <a className="page-link" onClick={() => {currentPage(i)}} >{i + 1}</a>
+            <li key={i} className={`page-item ${i === currentPage ? styles['active-link-paging'] : ''}`} style={i === currentPage ? { background: 'deepskyblue', color: 'white' } : {}}>
+                <a className="page-link" onClick={() => {onChangePage(i)}} >{i + 1}</a>
             </li>
         )
     }

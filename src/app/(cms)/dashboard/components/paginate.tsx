@@ -1,11 +1,11 @@
-export default function Paginate({totalPage}: any) {
+export default function Paginate({totalPage, currentPage}: any) {
 
 
     let pageNumber = []
     for(let i = 0 ; i < totalPage; i++ ) {
         pageNumber.push(
             <li key={i} className="page-item">
-                <a className="page-link" href="#">{i + 1}</a>
+                <a className="page-link" onClick={() => {currentPage(i + 1)}} >{i + 1}</a>
             </li>
         )
     }

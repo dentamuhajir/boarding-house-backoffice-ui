@@ -7,7 +7,7 @@ import DeleteModal from "../components/modal/delete";
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useFetcher } from "react-router-dom";
 import { AxiosError } from "axios";
-import Paginate from "../components/paginate";
+import Paginate from "../paginate/paginate";
 const USERS_QUERY_KEY = ['usersQK']
 export default function UserPage() {
     //const [users, setUsers] = useState<User[]>([])
@@ -197,7 +197,7 @@ export default function UserPage() {
                     </table>
                 </div>
                 <div className="card-footer border-0 py-5">
-                    <Paginate totalPage={data?.totalPages} currentPage={handleChangePage} />
+                    <Paginate totalPage={data?.totalPages} currentPage={page} onChangePage={handleChangePage} />
                     <span className="text-muted text-sm">Showing { data?.totalItems  < 10 ? data?.totalItems : 10 } items out of { data?.totalItems } results found</span>
                 </div>
             </div>

@@ -1,16 +1,23 @@
+'use client'
+
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
 import styles from "./login.module.css"
 
 
 export default function login() {
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    
+    const onSubmit = (data: any) => {
+        alert("clicked")
+    }
     
     return (
         // Apply CSS Module classes
         <div className={`${styles.pageWrapper}`}>
             <div className={`${styles.loginContainer} rounded-md shadow-lg`}>
                 <h2 className="text-center mb-4">Login</h2>
-                <form>
+                <form onSubmit={ handleSubmit(onSubmit) }>
                     {/* Email input field */}
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email address</label>
@@ -20,7 +27,17 @@ export default function login() {
                             id="email"
                             aria-describedby="emailHelp"
                             placeholder="Enter your email"
-                        />
+                            {...register('email',
+                            {
+                                required: 'Email is required',
+                                validate: (value) => {
+                                    // Basic email regex
+                                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                    return emailRegex.test(value) || 'Please enter a valid email';
+                                }
+                            }
+                        )} />
+                        {errors.email && <p className="pt-1 text-danger">{errors.email.message}</p>}
                     </div>
                     {/* Password input field */}
                     <div className="mb-3">

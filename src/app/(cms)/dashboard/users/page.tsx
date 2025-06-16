@@ -7,7 +7,7 @@ import DeleteModal from "../components/modal/delete";
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useFetcher } from "react-router-dom";
 import { AxiosError } from "axios";
-import Paginate from "../paginate/paginate";
+import Paginate from "../components/paginate/paginate";
 const USERS_QUERY_KEY = ['usersQK']
 export default function UserPage() {
     //const [users, setUsers] = useState<User[]>([])

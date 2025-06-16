@@ -1,0 +1,81 @@
+
+.body { /* This class would typically be applied to the global body or a main wrapper */
+    background-color: #f8f9fa; /* Light background */
+    font-family: 'Inter', sans-serif; /* Using Inter font */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.pageWrapper { /* New class for the wrapper */
+    min-height: 100vh; /* Takes full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa; /* Background color for the wrapper */
+    width: 100%;
+}
+
+.loginContainer {
+    max-width: 400px; /* Max width for the form container */
+    width: 100%;
+    padding: 30px;
+    background-color: #ffffff; /* White background for the form */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.socialBtnGoogle {
+    background-color: #db4437; /* Google red */
+    color: white;
+    border-radius: 8px; /* Rounded corners for social buttons */
+}
+.socialBtnGoogle:hover {
+    background-color: #c0392b;
+    color: white;
+}
+
+.socialBtnFacebook {
+    background-color: #3b5998; /* Facebook blue */
+    color: white;
+    border-radius: 8px; /* Rounded corners for social buttons */
+}
+.socialBtnFacebook:hover {
+    background-color: #344985;
+    color: white;
+}
+
+.formControl {
+    border-radius: 8px; /* Rounded corners for input fields */
+}
+
+.btnPrimary {
+    background-color: #007bff; /* Bootstrap primary blue */
+    border-color: #007bff;
+    border-radius: 8px; /* Rounded corners for login button */
+}
+.btnPrimary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #6c757d;
+}
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #dee2e6;
+}
+.divider:not(:empty)::before {
+    margin-right: .25em;
+}
+.divider:not(:empty)::after {
+    margin-left: .25em;
+}

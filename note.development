@@ -25,6 +25,9 @@
 # Webpixel CSS
     https://docs.webpixels.io/css/containers
 
+# Auth Spring & Next
+    https://www.youtube.com/watch?v=kj6wRnXQDKI    
+
 # Default structure
 /app
   /page.tsx
@@ -52,3 +55,22 @@ Client Component → interactivity, Redux
 
     New v5
     https://dreamix.eu/insights/tanstack-query-v5-migration-made-easy-key-aspects-breaking-changes/
+
+# /components
+  /ui
+    Button.tsx       ← custom sesuai Figma
+    Input.tsx
+    Modal.tsx
+    Tooltip.tsx      ← bisa pakai radix
+    ...
+  /layout
+    Header.tsx
+    Sidebar.tsx
+    Container.tsx
+  /form
+    FormField.tsx
+    FormError.tsx
+
+
+# Middleware 
+    https://stackoverflow.com/questions/73040090/nextjs-middleware-does-not-seem-to-be-triggered

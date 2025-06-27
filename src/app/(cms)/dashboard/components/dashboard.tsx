@@ -1,6 +1,6 @@
 'use client'
 
-import { UserService } from "@services/userService";
+import { UserService } from "@/services/userService";
 import { useMemo } from "react"
 import { useQuery } from '@tanstack/react-query';
 

@@ -1,6 +1,6 @@
 'use client'
-import { EndUser, User } from "@models/User";
-import { UserService } from "@services/userService"
+import { EndUser, User } from "../../../../types/User";
+import { UserService } from "@/services/userService"
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react"
 import DeleteModal from "../components/modal/delete";

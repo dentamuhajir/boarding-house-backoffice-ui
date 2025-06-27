@@ -1,7 +1,7 @@
-import { EndUser, User } from "@models/User"
+import { EndUser, User } from "../types/User"
 import axiosInstance from "../lib/axios"
-import { APIResponse } from "@models/APIResponse"
-import { Paginated } from "@models/Paginated"
+import { APIResponse } from "../types/APIResponse"
+import { Paginated } from "../types/Paginated"
 
 export class UserService {
     private baseUrl:string|undefined = axiosInstance.defaults.baseURL

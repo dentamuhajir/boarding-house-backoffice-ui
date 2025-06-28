@@ -1,15 +1,31 @@
 'use client'
 
-import { useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./login.module.css"
+import { AuthService } from "@/services/authService";
+import { LoginCredentials } from "@/types/auth/LoginCredentials";
 
 
 export default function login() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginCredentials>();
+    const authService = useMemo(() => new AuthService(), []);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const onSubmit = (data: any) => {
-        alert("clicked")
+    const onSubmit = async (credentials: LoginCredentials) => {
+        setError("");
+        setLoading(true);
+        try {
+            const result = await authService.login(credentials);
+            //console.log("Login success", result);
+            // Redirect or update app state
+        } catch (err: any) {
+            console.log(err.response.data.message)
+            setError(err?.response?.data?.message || "Login failed");
+        } finally {
+            setLoading(false);
+        }
     }
     
     return (
@@ -17,6 +33,11 @@ export default function login() {
         <div className={`${styles.pageWrapper}`}>
             <div className={`${styles.loginContainer} rounded-md shadow-lg`}>
                 <h2 className="text-center mb-4">Login</h2>
+                {error && (
+                        <div className="alert alert-danger" role="alert">
+                            { error }
+                        </div>
+                )}
                 <form onSubmit={ handleSubmit(onSubmit) }>
                     {/* Email input field */}
                     <div className="mb-3">
@@ -47,6 +68,7 @@ export default function login() {
                             className={`form-control ${styles.formControl}`} // Apply Bootstrap and CSS Module class
                             id="password"
                             placeholder="Enter your password"
+                            {...register('password')}
                         />
                     </div>
                     {/* Remember me checkbox and Forgot Password link */}

@@ -22,7 +22,11 @@ export class UserService {
 
     async getTotalUser() : Promise<any> {
         const endpoint: string = this.baseUrl + '/users/total'
-        const response = (await axiosInstance.get<any>(endpoint)).data
+        const response = (await axiosInstance.get<any>(
+            endpoint,   
+            {
+                withCredentials: true // Accept and store the HttpOnly JWT cookie
+            })).data
         return response.data
     }
 

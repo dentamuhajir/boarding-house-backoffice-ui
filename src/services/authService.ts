@@ -8,10 +8,14 @@ export class AuthService {
     async login(credentials: LoginCredentials): Promise<any> {
      
         const endpoint: string = this.baseUrl + '/api/login' 
-        const response = (await axiosInstance.post<any>(endpoint, credentials))
-        alert("here")
-        console.log(response.data.token)
-        sessionStorage.setItem("token", response.data.token);
+        const response = (await axiosInstance.post<any>(
+            endpoint, 
+            credentials,
+            {
+                withCredentials: true // Accept and store the HttpOnly JWT cookie
+            }
+        )).data
+        //sessionStorage.setItem("token", response.data.token);
         console.log(response)
         return response
     } 

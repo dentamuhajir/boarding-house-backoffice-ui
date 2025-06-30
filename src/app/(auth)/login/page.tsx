@@ -5,23 +5,30 @@ import { useForm } from "react-hook-form";
 import styles from "./login.module.css"
 import { AuthService } from "@/services/authService";
 import { LoginCredentials } from "@/types/auth/LoginCredentials";
+import { redirect, useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 
 export default function login() {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginCredentials>();
     const authService = useMemo(() => new AuthService(), []);
+    const router = useRouter();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
     const onSubmit = async (credentials: LoginCredentials) => {
-        setError("");
-        setLoading(true);
+
+
         try {
             const result = await authService.login(credentials);
+            //redirect('/dashboard/users')
+            console.log("success logging")
+            router.push('/dashboard/users')
+            
             //console.log("Login success", result);
             // Redirect or update app state
         } catch (err: any) {
-            console.log(err.response.data.message)
+            // /console.log(err.response.data.message)
             setError(err?.response?.data?.message || "Login failed");
         } finally {
             setLoading(false);

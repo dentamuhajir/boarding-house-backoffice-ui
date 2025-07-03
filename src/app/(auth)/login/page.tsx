@@ -17,12 +17,12 @@ export default function login() {
     const [loading, setLoading] = useState(false);
 
     const onSubmit = async (credentials: LoginCredentials) => {
-
+        //console.log(credentials)
 
         try {
             const result = await authService.login(credentials);
             //redirect('/dashboard/users')
-            console.log("success logging")
+            //console.log("success logging" + result)
             router.push('/dashboard/users')
             
             //console.log("Login success", result);
@@ -75,8 +75,13 @@ export default function login() {
                             className={`form-control ${styles.formControl}`} // Apply Bootstrap and CSS Module class
                             id="password"
                             placeholder="Enter your password"
-                            {...register('password')}
+                            {...register('password', 
+                                {
+                                    required: 'Password is required'
+                                }
+                            )}
                         />
+                        {errors.password && <p className="pt-1 text-danger">{errors.password?.message}</p>}
                     </div>
                     {/* Remember me checkbox and Forgot Password link */}
                     <div className="mb-3 form-check d-flex justify-content-between align-items-center">

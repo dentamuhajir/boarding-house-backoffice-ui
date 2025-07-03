@@ -1,12 +1,29 @@
-import { Metadata } from "next";
+'use client'
 
-export const metadata: Metadata = {
-    title: 'Dashboard'
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+export function useAuthRedirect() {
+    //console.log("here")
+
+    const router = useRouter()
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') { 
+        const token = sessionStorage.getItem('token');
+        console.log(token)
+        if (!token) {
+            router.push('/login');
+        }
+        }
+    }, [router]);
 }
+
 export default function dashboard() {
+    useAuthRedirect()
     return (
         <>
-            <h1>This is children</h1>
+            <h1>Pass to dashboard page</h1>
         </>
     )
 }

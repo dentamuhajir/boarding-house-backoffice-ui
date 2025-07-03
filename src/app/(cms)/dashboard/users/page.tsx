@@ -8,7 +8,25 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useFetcher } from "react-router-dom";
 import { AxiosError } from "axios";
 import Paginate from "../components/paginate/paginate";
+import { useRouter } from "next/navigation";
 const USERS_QUERY_KEY = ['usersQK']
+
+export function useAuthRedirect() {
+    //console.log("here")
+
+    const router = useRouter()
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') { 
+        const token = sessionStorage.getItem('token');
+        console.log(token)
+        if (!token) {
+            router.push('/login');
+        }
+        }
+    }, [router]);
+}
+
 export default function UserPage() {
     //const [users, setUsers] = useState<User[]>([])
     const [userDetail, setUserDetail] = useState<EndUser>()

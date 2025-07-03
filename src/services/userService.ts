@@ -10,7 +10,13 @@ export class UserService {
 
     async getUsers(page: number = 0, size: number = 5) : Promise<Paginated<User[]>> {
         const endpoint: string = this.baseUrl + '/users?page=' + page + '&size=' + size;
-        const response = (await axiosInstance.get<APIResponse<Paginated<User[]>>>(endpoint)).data
+        const response = (await axiosInstance.get<APIResponse<Paginated<User[]>>>(
+            endpoint,
+            {
+                withCredentials: true // Accept and store the HttpOnly JWT cookie
+            }
+        )).data
+        
         return response.data
     }
 
@@ -23,10 +29,9 @@ export class UserService {
     async getTotalUser() : Promise<any> {
         const endpoint: string = this.baseUrl + '/users/total'
         const response = (await axiosInstance.get<any>(
-            endpoint,   
-            {
-                withCredentials: true // Accept and store the HttpOnly JWT cookie
-            })).data
+            endpoint
+        
+        )).data
         return response.data
     }
 

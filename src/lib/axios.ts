@@ -25,5 +25,16 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error); 
   }
 );
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = sessionStorage.getItem('token'); // Retrieve token from session storage
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
 export default axiosInstance;
 

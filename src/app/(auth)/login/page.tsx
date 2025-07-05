@@ -104,12 +104,12 @@ export default function login() {
                 <div className="d-grid gap-2">
                     {/* Google login button */}
                     <button className={`btn btn-lg ${styles.socialBtnGoogle} mb-2`}>
-                        <i className="fab fa-google me-2"></i> Continue with Google
+                        <i className="bi bi-google"></i> Continue with Google
                     </button>
                     {/* Facebook login button */}
-                    <button className={`btn btn-lg ${styles.socialBtnFacebook}`}>
-                        <i className="fab fa-facebook-f me-2"></i> Continue with Facebook
-                    </button>
+                    {/* <button className={`btn btn-lg ${styles.socialBtnFacebook}`}>
+                        <i className="fab fa-facebook-f me-2"></i> Sign in with Facebook
+                    </button> */}
                 </div>
 
                 {/* Sign up link */}

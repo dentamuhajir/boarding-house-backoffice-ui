@@ -4,8 +4,7 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   console.log('MIDDLEWARE RUNNING on:', request.nextUrl.pathname);
 
-  //const token = request.cookies.get('token')?.value;
-  const token = sessionStorage.getItem('token')
+  const token = request.cookies.get('token')?.value;
 
   // Protect dashboard routes
   if (request.nextUrl.pathname.startsWith('/dashboard') && !token) {

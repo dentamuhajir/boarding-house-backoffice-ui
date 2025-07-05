@@ -9,9 +9,9 @@ export class AuthService {
      
         const endpoint: string = this.baseUrl + '/api/login' 
         const response = (await axiosInstance.post<any>(endpoint, credentials))
-        console.log(response.data.token)
-        sessionStorage.setItem("token", response.data.token);
-        console.log(response)
+        // console.log(response.data.token)
+        // sessionStorage.setItem("token", response.data.token);
+        // console.log(response)
         return response
     } 
 }

@@ -6,6 +6,7 @@ export function middleware(request: NextRequest) {
 
   const token = request.cookies.get('token')?.value;
 
+  console.log(token)
   // Protect dashboard routes
   if (request.nextUrl.pathname.startsWith('/dashboard') && !token) {
     console.log('No token. Redirecting to login...');

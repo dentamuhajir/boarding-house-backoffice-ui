@@ -57,7 +57,7 @@ export default function sidebar() {
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">
-                                <i className="bi bi-house"></i> Kost Management
+                                <i className="bi bi-house"></i> Property Management
                                 <span className="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
                             </a>
                         </li>

@@ -3,18 +3,21 @@
 import { UserService } from "@/services/userService";
 import { useMemo } from "react"
 import { useQuery } from '@tanstack/react-query';
+import { PropertyService } from "@/services/propertyService";
 
 
 const TOTAL_USERS_QUERY_KEY = ['totalUsers'];
+const TOTAL_PROPERTY_QUERY_KEY = ['totalProperty'];
 
 
 export default function Dashboard() {
 
     // to avoid create an instance service multiple
     const userService = useMemo(() => new UserService(), []);
+    const propertyService = useMemo(() => new PropertyService(), []);
 
     const {
-        data: data,
+        data: user,
         error: errorTotalUser,
         isError: isErrorTotalUser,
         isPending, // v5: use `isPending` instead of `isLoading`
@@ -22,6 +25,16 @@ export default function Dashboard() {
         queryKey: TOTAL_USERS_QUERY_KEY,
         queryFn: () => userService.getTotalUser(),
     });
+
+    const {
+        data: property,
+        error: errorTotalProperty,
+        isError: isErrorTotalProperty,
+        isPending: isPendingTotalProperty
+    } = useQuery({
+        queryKey: TOTAL_PROPERTY_QUERY_KEY,
+        queryFn: () => propertyService.getTotalProperty(),
+    })
 
     // if (isError) return <p>Error: {error.message}</p>;
 
@@ -62,7 +75,7 @@ export default function Dashboard() {
                                 ) : isErrorTotalUser ? (
                                     <span className="badge bg-danger">Service not available</span> 
                                 ) : (
-                                    <span className="h3 font-bold mb-0">{data?.totalUsers}</span>
+                                    <span className="h3 font-bold mb-0">{user?.totalUsers}</span>
                                 )} 
                             </div>
                             <div className="col-auto">
@@ -86,7 +99,13 @@ export default function Dashboard() {
                         <div className="row">
                             <div className="col">
                                 <span className="h6 font-semibold text-muted text-sm d-block mb-2">Total Kost</span>
-                                <span className="h3 font-bold mb-0">37</span>
+                                { isPendingTotalProperty ? ( 
+                                    <span className="placeholder col-3 placeholder-sm rounded placeholder-wave"></span>
+                                ) : isErrorTotalProperty ? (
+                                    <span className="badge bg-danger">Service not available</span> 
+                                ) : (
+                                    <span className="h3 font-bold mb-0">{property?.totalProperty}</span>
+                                )} 
                             </div>
                             <div className="col-auto">
                                 <div className="icon icon-shape bg-info text-white text-lg rounded-circle">

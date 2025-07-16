@@ -1,4 +1,5 @@
 
+import { SidebarProvider } from "@/context/SidebarContext";
 import Dashboard from "./components/dashboard";
 import Header from "./components/header/header";
 import Sidebar from "./components/sidebar/sidebar";
@@ -9,7 +10,9 @@ export default function DashboardLayout({
   }>) {
     return (
         <>
+          
           <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+            <SidebarProvider>
             <Sidebar/>
             <div className="h-screen flex-grow-1 overflow-y-lg-auto">
               <Header />  
@@ -20,6 +23,7 @@ export default function DashboardLayout({
                 </div>
               </main>
             </div>
+            </SidebarProvider>
           </div>
         </>
     );

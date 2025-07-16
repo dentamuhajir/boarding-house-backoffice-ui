@@ -1,5 +1,8 @@
+'use client'
+import { useSidebar } from "@/context/SidebarContext";
 import styles from "./header.module.css"
 export default function Header() {
+     const { toggleSidebar } = useSidebar();
     return (    
             <>
             <header className={`bg-surface-primary border-bottom pt-6 pb-6 ${ styles.header }`}>
@@ -8,12 +11,12 @@ export default function Header() {
                         <div className="row align-items-center">
                             <div className="col-sm-6 col-12 mb-4 mb-sm-0">
                                 
-                                <h1 className="h2 mb-0 ls-tight">Dashboard</h1>
+                                <h1 className="h2 mb-0 ls-tight" onClick={ toggleSidebar }>Dashboard</h1>
                             </div>
                             
                             <div className="col-sm-6 col-12 text-sm-end">
                                 <div className="mx-n1">
-                                    
+                                     
                                 <span className="position-relative pe-2">
                                     <i className="bi bi-bell"></i>
                                     {/* <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">

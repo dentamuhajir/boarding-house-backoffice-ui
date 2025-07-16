@@ -56,10 +56,11 @@ export default function sidebar() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">
+                            <Link className="nav-link" href='/dashboard/property'>
                                 <i className="bi bi-house"></i> Property Management
                                 <span className="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
-                            </a>
+                            
+                            </Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">

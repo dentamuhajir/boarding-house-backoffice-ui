@@ -4,6 +4,7 @@ import { UserService } from "@/services/userService";
 import { useMemo } from "react"
 import { useQuery } from '@tanstack/react-query';
 import { PropertyService } from "@/services/propertyService";
+import { useSidebar } from "@/context/SidebarContext";
 
 
 const TOTAL_USERS_QUERY_KEY = ['totalUsers'];
@@ -11,6 +12,8 @@ const TOTAL_PROPERTY_QUERY_KEY = ['totalProperty'];
 
 
 export default function Dashboard() {
+
+    const { isSidebarOpen } = useSidebar();
 
     // to avoid create an instance service multiple
     const userService = useMemo(() => new UserService(), []);
@@ -46,7 +49,7 @@ export default function Dashboard() {
                     <div className="card-body">
                         <div className="row">
                             <div className="col">
-                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Revenue</span>
+                                <span className="h6 font-semibold text-muted text-sm d-block mb-2">Revenue {isSidebarOpen ? ("open") : ("closes")}</span>
                                 <span className="h3 font-bold mb-0">Rp 200.000</span>
                             </div>
                             <div className="col-auto">
